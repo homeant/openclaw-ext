@@ -3,7 +3,7 @@ set -euo pipefail
 
 # --- 环境变量默认值 ---
 export DISPLAY=:1
-export HOME="/tmp/browser-home"
+export HOME="~/"
 CDP_PORT="${BROWSER_CDP_PORT:-9222}"
 VNC_PORT="${BROWSER_VNC_PORT:-5900}"
 NOVNC_PORT="${BROWSER_NOVNC_PORT:-6080}"
