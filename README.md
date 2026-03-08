@@ -29,7 +29,7 @@ docker run -d \
   -p 9222:9222 \
   -p 5900:5900 \
   -p 6080:6080 \
-  -e BROWSER_VNC_PASSWORD=mypassword \
+  -e BROWSER_NOVNC_PASSWORD=mypassword \
   sandbox-browser:bookworm-slim
 ```
 
@@ -49,19 +49,19 @@ docker run -d \
 | `BROWSER_ENABLE_NOVNC` | `1` | 是否启用 noVNC（1=启用，0=禁用） |
 | `BROWSER_HEADLESS` | `0` | 是否启用无头模式（1=启用，0=禁用） |
 | `BROWSER_NO_SANDBOX` | `1` | 是否禁用沙盒（1=禁用，0=启用） |
-| `BROWSER_VNC_PASSWORD` | （自动生成） | VNC 密码（空字符串=无认证，未设置=自动生成） |
+| `BROWSER_NOVNC_PASSWORD` | （自动生成） | noVNC 密码（空字符串=无认证，未设置=自动生成） |
 
 ## VNC 密码策略
 
 脚本提供三种 VNC 认证模式：
 
-1. **设置自定义密码**：`BROWSER_VNC_PASSWORD=mypassword`
+1. **设置自定义密码**：`BROWSER_NOVNC_PASSWORD=mypassword`
    - 使用指定密码启用 VNC 认证
 
-2. **禁用认证**：`BROWSER_VNC_PASSWORD=""`
+2. **禁用认证**：`BROWSER_NOVNC_PASSWORD=""`
    - VNC 无需密码即可访问
 
-3. **自动生成**：不设置 `BROWSER_VNC_PASSWORD` 环境变量
+3. **自动生成**：不设置 `BROWSER_NOVNC_PASSWORD` 环境变量
    - 自动生成随机密码并在启动时显示
 
 ## 系统架构
@@ -123,7 +123,7 @@ docker run -d \
   -p 9222:9222 \
   -p 5900:5900 \
   -p 6080:6080 \
-  -e BROWSER_VNC_PASSWORD=secure123 \
+  -e BROWSER_NOVNC_PASSWORD=secure123 \
   sandbox-browser:bookworm-slim
 ```
 
@@ -135,7 +135,7 @@ docker run -d \
   -p 9222:9222 \
   -p 5900:5900 \
   -p 6080:6080 \
-  -e BROWSER_VNC_PASSWORD="" \
+  -e BROWSER_NOVNC_PASSWORD="" \
   sandbox-browser:bookworm-slim
 ```
 
@@ -151,7 +151,7 @@ docker run -d \
 
 ## 注意事项
 
-1. **VNC 密码**：生产环境请务必设置 `BROWSER_VNC_PASSWORD`
+1. **VNC 密码**：生产环境请务必设置 `BROWSER_NOVNC_PASSWORD`
 2. **资源限制**：建议根据使用情况设置 Docker 容器的 CPU 和内存限制
 3. **网络访问**：容器默认可以访问外部网络，如需隔离请添加网络限制
 4. **数据持久化**：如需持久化浏览器数据，请挂载 `~/.chrome` 目录
